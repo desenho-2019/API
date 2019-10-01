@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  web:
+    container_name: cafofo_api
+    build: .
+      #context: ../
+      #dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+  db:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    ports:
+        - 5432:5432     
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
