@@ -1,0 +1,18 @@
+version: '3'
+services:
+  cafofo:
+    build: .
+    depends_on:
+      - db
+    ports:
+     - "5000:5000"
+    environment:
+     - DBUSER=cafofo
+     - DBPASS=cafofo
+     - DBHOST=db
+     - DBNAME=postgres
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: cafofo
