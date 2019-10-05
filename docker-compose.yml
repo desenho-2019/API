@@ -11,6 +11,7 @@ services:
      - DBPASS=cafofo
      - DBHOST=db
      - DBNAME=postgres
+    volumes: ['./cafofo:/app']
   db:
     image: postgres
     restart: always

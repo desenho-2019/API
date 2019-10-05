@@ -3,7 +3,7 @@ RUN pip3 install --upgrade pip
 COPY requirements.txt /
 WORKDIR /
 RUN pip3 install -r ./requirements.txt --no-cache-dir
-COPY app/ /app/
+COPY * /app/
 WORKDIR /app
 ENTRYPOINT ["python"]
 CMD ["app.py"]
