@@ -9,6 +9,7 @@ services:
       - db
     ports:
       - "5000:5000"
+    volumes: ['./cafofo:/app']
   db:
     container_name: postgres
     image: postgres:latest
