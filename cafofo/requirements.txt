@@ -3,3 +3,7 @@ flask_restful
 flask-sqlalchemy
 flask-Migrate
 psycopg2
+Flask-Login==0.4.1
+Flask-WTF==0.14.2
+passlib==1.7.1
+WTForms==2.2.1
