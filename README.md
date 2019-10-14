@@ -57,3 +57,23 @@ Para rodar a aplicação, entre na pasta do projeto em que está localizado o __
   docker-compose up -d
 ```
 Espere até que todos os serviços estejam disponíveis, acesse a página inicial do projeto com o seguinte endereço: https://localhost:5000
+
+
+* ## Migrando mudanças no banco
+
+Ao fazer mudanças que poem afetar estrutura do banco de dados entre no container da api 
+
+```
+docker exec -it cafofo_api /bin/bash
+```
+
+e então execute  o commando para efetuar as migrações:
+
+```
+flask db migrate
+```
+
+e em seguida
+```
+flask db upgrade
+```
