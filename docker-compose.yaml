@@ -1,10 +1,10 @@
 version: '3'
 services:
   db:
-    container_name: cafofo_api_db
+    container_name: cafofo_db
     image: postgres
   web:
-    container_name: cafofo_api_api
+    container_name: cafofo_api
     build: .
     command: /bin/bash -l -c 'python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8990'
     volumes:
