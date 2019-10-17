@@ -1,3 +1,8 @@
 django>=2.1
 psycopg2
+<<<<<<< Updated upstream
 djangorestframework
+=======
+djangorestframework
+djangorestframework_simplejwt
+>>>>>>> Stashed changes
