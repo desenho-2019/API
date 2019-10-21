@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+
 
 # Application definition
 
@@ -38,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'social_django',
+    'cafofo_api',
     
 ]
 
@@ -124,3 +132,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTHENTICATION_BACKENDS = [
+        'social_core.backends.linkedin.LinkedinOAuth2',
+        'social_core.backends.instagram.InstagramOAuth2',
+        'social_core.backends.facebook.FacebookOAuth2',
+        'django.contrib.auth.backends.ModelBackend',
+    ]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '422173988489425'        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '2bca60747c14bb19352dc12a167b99fd'  # App Secret
