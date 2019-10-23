@@ -30,7 +30,6 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('social-auth/', include('social_django.urls', namespace="social")),
     path("login/", views.login, name="login"),
-    path("", views.home, name="home"),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+ 
 
 ]
