@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
 from cards.views import CardViewSet
+from republic.views import RepublicViewSet
 
 
 router = routers.DefaultRouter()
 router.register('cards', CardViewSet)
+router.register('republic', RepublicViewSet)
+# router.register('republic/<pk>', RepublicViewSet)
+# router.register('republic/<republic_id>', RepublicDetail)
 
 
 
