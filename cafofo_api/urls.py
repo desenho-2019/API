@@ -18,11 +18,14 @@ from django.urls import path,include
 from rest_framework import routers
 from cards.views import CardViewSet
 from republic.views import RepublicViewSet
-
+from person.views import PersonViewSet
 
 router = routers.DefaultRouter()
 router.register('cards', CardViewSet)
 router.register('republic', RepublicViewSet)
+router.register('person', PersonViewSet)
+
+
 # router.register('republic/<pk>', RepublicViewSet)
 # router.register('republic/<republic_id>', RepublicDetail)
 
