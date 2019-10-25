@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cards',
     'republic',
     'person',
+    'vacancy',
 
 ]
 

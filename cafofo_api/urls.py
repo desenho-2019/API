@@ -19,12 +19,14 @@ from rest_framework import routers
 from cards.views import RepublicCardViewSet, PersonalCardViewSet
 from republic.views import RepublicViewSet
 from person.views import PersonViewSet
+from vacancy.views import VacancyViewSet
 
 router = routers.DefaultRouter()
 router.register('cards/republic', RepublicCardViewSet)
 router.register('cards/personal', PersonalCardViewSet)
 router.register('republic', RepublicViewSet)
 router.register('person', PersonViewSet)
+router.register('vacancy', VacancyViewSet)
 
 
 # router.register('republic/<pk>', RepublicViewSet)

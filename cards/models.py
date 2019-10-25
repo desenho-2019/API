@@ -19,8 +19,8 @@ class Card(models.Model):
     cardState = None
     owner = None
 
-    class Meta:
-        abstract = True
+    # class Meta:
+    #     abstract = True
 
     def __str__(self):
         return self.title
@@ -34,7 +34,7 @@ class RepublicCard(Card):
     )
 
     def __str__(self):
-        return 'Republic Card' + self.title
+        return 'Republic Card ' + self.title
 
 class PersonalCard(Card):
     owner = models.ForeignKey(
