@@ -5,8 +5,8 @@ from .models import PersonalCard
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         abstract = True
-        fields = ('id', 'title', 'description', 'price', 'location', 'items',
-        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'status')
+        fields = ('pk', 'title', 'description', 'price', 'location', 'items',
+        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'status', 'owner')
 
 class RepublicCardSerializer(CardSerializer):
     class Meta:

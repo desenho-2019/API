@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from rest_framework import routers, serializers, viewsets
-from .models import RepublicCard
-from .serializers import CardSerializer
+from .models import RepublicCard, PersonalCard
+from .serializers import RepublicCardSerializer, PersonalCardSerializer
 
-class CardViewSet(viewsets.ModelViewSet):
+class RepublicCardViewSet(viewsets.ModelViewSet):
     queryset = RepublicCard.objects.all()
-    serializer_class = CardSerializer
+    serializer_class = RepublicCardSerializer
+
+class PersonalCardViewSet(viewsets.ModelViewSet):
+    queryset = PersonalCard.objects.all()
+    serializer_class = PersonalCardSerializer

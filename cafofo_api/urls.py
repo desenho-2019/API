@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
-from cards.views import CardViewSet
+from cards.views import RepublicCardViewSet, PersonalCardViewSet
 from republic.views import RepublicViewSet
 from person.views import PersonViewSet
 
 router = routers.DefaultRouter()
-router.register('cards', CardViewSet)
+router.register('cards/republic', RepublicCardViewSet)
+router.register('cards/personal', PersonalCardViewSet)
 router.register('republic', RepublicViewSet)
 router.register('person', PersonViewSet)
 

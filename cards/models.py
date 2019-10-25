@@ -17,6 +17,7 @@ class Card(models.Model):
     target_gender = ''
     status = None
     cardState = None
+    owner = None
 
     class Meta:
         abstract = True
@@ -25,9 +26,9 @@ class Card(models.Model):
         return self.title
 
 class RepublicCard(Card):
-    ownerRepublic = models.ForeignKey(
+    owner = models.ForeignKey(
         Republic,
-        related_name = 'republiccard',
+        related_name = 'republiccards',
         on_delete = models.CASCADE,
         verbose_name = 'republic'
     )
@@ -36,9 +37,9 @@ class RepublicCard(Card):
         return 'Republic Card' + self.title
 
 class PersonalCard(Card):
-    ownerPersonal = models.ForeignKey(
+    owner = models.ForeignKey(
         Person,
-        related_name = 'republiccard',
+        related_name = 'personalcards',
         on_delete = models.CASCADE,
         verbose_name = 'person'
     )
