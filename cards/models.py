@@ -27,7 +27,7 @@ class Card(models.Model):
 class RepublicCard(Card):
     ownerRepublic = models.ForeignKey(
         Republic,
-        # related_name = 'cards_republiccard',
+        related_name = 'republiccard',
         on_delete = models.CASCADE,
         verbose_name = 'republic'
     )
@@ -38,7 +38,7 @@ class RepublicCard(Card):
 class PersonalCard(Card):
     ownerPersonal = models.ForeignKey(
         Person,
-        # related_name = 'cards_republiccard',
+        related_name = 'republiccard',
         on_delete = models.CASCADE,
         verbose_name = 'person'
     )

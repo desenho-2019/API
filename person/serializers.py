@@ -6,4 +6,4 @@ class PersonSerializer(serializers.ModelSerializer):
         personal_cards = PersonalCardSerializer(many=True, read_only=True)
         class Meta:
             model = Person
-            fields = ('id', 'first_name', 'surname', 'personal_cards')
+            fields = ('pk','first_name', 'surname', 'personal_cards')
