@@ -139,5 +139,5 @@ AUTHENTICATION_BACKENDS = [
         'django.contrib.auth.backends.ModelBackend',
     ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '422173988489425'        # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '2bca60747c14bb19352dc12a167b99fd'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = ''        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = ''  # App Secret
