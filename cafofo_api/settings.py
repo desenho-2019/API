@@ -133,11 +133,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = [
-        'social_core.backends.linkedin.LinkedinOAuth2',
-        'social_core.backends.instagram.InstagramOAuth2',
+        'social_core.backends.google.GoogleOAuth2',
         'social_core.backends.facebook.FacebookOAuth2',
         'django.contrib.auth.backends.ModelBackend',
     ]
 
 SOCIAL_AUTH_FACEBOOK_KEY = '422173988489425'        # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '2bca60747c14bb19352dc12a167b99fd'  # App Secret
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '855740971612-r7ccuqqvtemd736nq89oejv3fpp4v9fm.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'NCxeJ3OsCiGyXHL5wFDuiZ0q'
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
