@@ -5,7 +5,9 @@ from django.urls import path,include
 from users.views import  ExampleView,  ListUser, CreateUser,UserUpdateDeleteSet
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
+from django.contrib.auth import views as auth_views
 
+from django.conf.urls import url, include
 
 
 
@@ -16,4 +18,5 @@ urlpatterns = [
     path('list/',ListUser.as_view()),
     path('create/',CreateUser.as_view()),
     path('settings/<int:pk>/',UserUpdateDeleteSet.as_view()),
+    path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
    ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
