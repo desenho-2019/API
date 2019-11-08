@@ -2,3 +2,5 @@ django>=2.1
 psycopg2
 djangorestframework
 djangorestframework_simplejwt
+gunicorn
+django-heroku
