@@ -4,7 +4,7 @@ from users.models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = [ 'id','email','password','name','phone','date_of_birth','gender','nationality','facebook','google','photo']
+        fields = '__all__'
 
 
 class UserCreateUpdateSerializer(serializers.ModelSerializer):
@@ -13,7 +13,7 @@ class UserCreateUpdateSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = CustomUser
-        fields = ['email','password','name','phone','date_of_birth','gender','nationality','facebook','google','photo',]
+        fields = ['email','password']
 
 
 

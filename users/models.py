@@ -27,25 +27,11 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser,PermissionsMixin):
     
-    """
-    User gender
-    """
-    MASCULINO = 1
-    FEMININO = 2
-    GENDER_TITLE= ((MASCULINO,'Masculino'),
-                    (FEMININO,'Feminino'),)
 
     
     username =None
-    name = models.CharField(_('Nome'), max_length=100, blank=True)
+    
     email = models.EmailField(_('Email'),unique=True)
-    phone = models.CharField(_('Telefone'),max_length=11)
-    date_of_birth =models.DateField(_('Data de Nascimento'))
-    gender = models.IntegerField(_('Genero'),choices=GENDER_TITLE)
-    nationality = models.CharField(_('Nascionalidade'),max_length=30)
-    facebook = models.CharField(_('Facebook'),blank=True,max_length=30)
-    google = models.CharField(_('Google +'),blank=True,max_length=30)
-    photo = models.ImageField(blank=True)
     is_staff = models.BooleanField(_('staff status'),default=False)
     is_active = models.BooleanField(_('active'),default=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
