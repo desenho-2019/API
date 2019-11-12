@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'cards',
+    'republic',
+    'person',
+    'vacancy',
     'users',
 
 ]
@@ -135,6 +139,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
@@ -164,3 +169,4 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
+
