@@ -28,6 +28,6 @@ class PersonCreateUpdateSerializer(serializers.Serializer):
         #person_data = validated_data.pop('first_name','surname','phone', 'date_of_birth','gender')
 
         user = UserSerializer.create(UserSerializer(),validated_data = validated_data.pop('user'))
-        print(user[0])
-        person = Person.objects.create(user=user[0], first_name=validated_data.get('first_name'), surname=validated_data.get('surname'), phone=validated_data.get('phone'), date_of_birth=validated_data.get('date_of_birth'), gender=validated_data.get('gender'))
+        print(user)
+        person = Person.objects.create(user=user, first_name=validated_data.get('first_name'), surname=validated_data.get('surname'), phone=validated_data.get('phone'), date_of_birth=validated_data.get('date_of_birth'), gender=validated_data.get('gender'))
         return person
