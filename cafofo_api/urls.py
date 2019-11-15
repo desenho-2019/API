@@ -27,7 +27,7 @@ router = routers.DefaultRouter()
 router.register('cards/republic', RepublicCardViewSet)
 router.register('cards/personal', PersonalCardViewSet)
 router.register('republic', RepublicViewSet)
-router.register('person', PersonViewSet)
+#router.register('person', PersonViewSet)
 router.register('vacancy', VacancyViewSet)
 
 
@@ -42,4 +42,5 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('user/',include('users.urls')),
+    path('person/',include('person.urls')),
    ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

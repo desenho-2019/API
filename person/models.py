@@ -30,10 +30,8 @@ class Person(models.Model):
         #related_name = 'email'
         on_delete=models.CASCADE,
         primary_key=True,
-        verbose_name="CostumUser"
-    )    
-
-
+        verbose_name="email"
+    )
 
     Republic = models.ForeignKey(
         Republic,

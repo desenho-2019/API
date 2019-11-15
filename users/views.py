@@ -18,14 +18,10 @@ class ExampleView(APIView):
         }
         return Response(content)
 
-
-
-
 class UserUpdateDeleteSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
     permission_classes = (AllowAny,)
-
 
 class ListUser(generics.ListAPIView):
     #permission_classes = [IsAdminUser]
