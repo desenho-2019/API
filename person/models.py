@@ -27,7 +27,7 @@ class Person(models.Model):
 
     user = models.OneToOneField(
         CustomUser,
-        #related_name = 'email'
+        related_name = 'person',
         on_delete=models.CASCADE,
         primary_key=True,
         verbose_name="email"
