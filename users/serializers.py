@@ -6,6 +6,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = '__all__'
 
+    def create(self, validated_data):
+        return CustomUser.objects.get_or_create(email=validated_data.get('email'), password=validated_data.get('password'))
 
 class UserCreateUpdateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
@@ -14,6 +16,3 @@ class UserCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['email','password']
-
-
-

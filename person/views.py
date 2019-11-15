@@ -14,6 +14,7 @@ class PersonViewSet(viewsets.ModelViewSet):
 
 class CreatePerson(APIView):
     def post(self, request, format=None):
+        #print(request.data)
         serializer = PersonCreateUpdateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
