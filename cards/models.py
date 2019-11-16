@@ -19,6 +19,7 @@ class Card(models.Model):
     cardState = None
     owner = None
     owner_type = None
+    update_serializer = "CardSerializer"
 
     # class Meta:
     #     abstract = True
@@ -34,6 +35,7 @@ class RepublicCard(Card):
         verbose_name = 'republic'
     )
     owner_type = "Republic"
+    update_serializer = "RepublicCardSerializer"
 
     def __str__(self):
         return 'Republic Card ' + self.title
@@ -46,6 +48,7 @@ class PersonalCard(Card):
         verbose_name = 'person'
     )
     owner_type = "Person"
+    update_serializer = "PersonalCardSerializer"
 
     def _str_(self):
         return 'Personal Card ' + self.title

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import routers, serializers, viewsets, status
-from .models import RepublicCard, PersonalCard
+from .models import RepublicCard, PersonalCard, Card
 from .serializers import RepublicCardSerializer, PersonalCardSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -70,6 +70,39 @@ class MyRepublicCards(APIView):
         republic = self.get_republic(person)
         request.data['owner'] = republic.pk
         serializer = RepublicCardSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UpdateCard(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get_card(self, user_id, republic_id):
+        card_id = self.kwargs.get("card_id")
+        card = PersonalCard.objects.filter(pk=card_id, owner_id = user_id).first() or RepublicCard.objects.filter(pk=card_id, owner_id = republic_id).first()
+        return card
+
+    def get_person(self, user):
+        person = user.person
+        return person
+
+    def get_republic(self, person):
+        republic = person.republic
+        return republic
+
+    def get(self, request,*args, **kwargs):
+        person = self.get_person(request.user)
+        republic = self.get_republic(person)
+        card = self.get_card(person.pk, republic.pk)
+        serializer = UpdateCardSerializer(card)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def put(self, request, *args, **kwargs):
+        person = self.get_person(request.user)
+        republic = self.get_republic(person)
+        card = self.get_card(person.pk, republic.pk)
+        serializer = eval(card.update_serializer)(card, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
