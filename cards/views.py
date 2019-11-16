@@ -46,7 +46,7 @@ class MyPersonalCards(APIView):
 class MyRepublicCards(APIView):
     permission_classes = (IsAuthenticated,)
 
-    def get_republicCards(self, person):
+    def get_republicCards(self, republic):
         republicCard = RepublicCard.objects.filter(owner=republic.pk)
         return republicCard
 
@@ -56,6 +56,7 @@ class MyRepublicCards(APIView):
 
     def get_republic(self, person):
         republic = person.republic
+        return republic
 
     def get(self,request, format=None):
         person = self.get_person(request.user)

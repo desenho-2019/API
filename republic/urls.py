@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path,include
-from .views import MyRepublic
+from .views import MyRepublic, RepublicViewSet
 from rest_framework import routers
 
 urlpatterns = [

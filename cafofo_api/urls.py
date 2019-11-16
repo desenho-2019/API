@@ -24,9 +24,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 router = routers.DefaultRouter()
-# router.register('cards/republic', RepublicCardViewSet)
-# router.register('cards/personal', PersonalCardViewSet)
-# router.register('republic', RepublicViewSet)
+router.register('cards/republic', RepublicCardViewSet)
+router.register('cards/personal', PersonalCardViewSet)
+router.register('republic/all', RepublicViewSet)
 #router.register('person', PersonViewSet)
 router.register('vacancy', VacancyViewSet)
 

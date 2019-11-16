@@ -9,7 +9,3 @@ urlpatterns = [
     path('myrepubliccards/',MyRepublicCards.as_view()),
 
    ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
-
-router = routers.DefaultRouter()
-router.register('republic/', RepublicCardViewSet)
-router.register('personal/', PersonalCardViewSet)

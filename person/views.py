@@ -13,6 +13,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
 
 class CreatePerson(APIView):
+    permission_classes = (AllowAny,)
     def post(self, request, format=None):
         #print(request.data)
         serializer = PersonCreateUpdateSerializer(data=request.data)
@@ -20,3 +21,8 @@ class CreatePerson(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def get(self,request, format=None):
+        persons = Person.objects.all()
+        serializer = PersonSerializer(persons, many=True)
+        return Response(serializer.data)
