@@ -68,7 +68,7 @@ class MyRepublicCards(APIView):
         person = self.get_person(request.user)
         republic = self.get_republic(person)
         request.data['owner'] = republic.pk
-        serializer = RepublcCardSerializer(data=request.data)
+        serializer = RepublicCardSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
