@@ -102,8 +102,10 @@ class UpdateCard(APIView):
         person = self.get_person(request.user)
         republic = self.get_republic(person)
         card = self.get_card(person.pk, republic.pk)
-        serializer = eval(card.update_serializer)(card, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        if card:
+            serializer = eval(card.update_serializer)(card, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "Card for user or user-republic not found", "status":"404"}, status=status.HTTP_204_NO_CONTENT)
