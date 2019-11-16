@@ -27,7 +27,7 @@ router = routers.DefaultRouter()
 router.register('cards/republic', RepublicCardViewSet)
 router.register('cards/personal', PersonalCardViewSet)
 router.register('republic/all', RepublicViewSet)
-#router.register('person', PersonViewSet)
+router.register('person/all', PersonViewSet)
 router.register('vacancy', VacancyViewSet)
 
 

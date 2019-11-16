@@ -6,7 +6,7 @@ class CardSerializer(serializers.ModelSerializer):
     class Meta:
         abstract = True
         fields = ('pk', 'title', 'description', 'price', 'location', 'items',
-        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'status', 'owner')
+        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'status', 'owner', 'owner_type')
 
 class RepublicCardSerializer(CardSerializer):
     class Meta:

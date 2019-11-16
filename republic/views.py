@@ -37,6 +37,16 @@ class MyRepublic(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def put(self, request, format=None):
+        person = self.get_person(request.user)
+        republic = self.get_republic(person)
+        serializer = RepublicSerializer(republic, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
     def delete(self, request, format=None):
         person = self.get_person(request.user)
         republic = person.republic

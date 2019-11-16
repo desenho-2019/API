@@ -18,6 +18,7 @@ class Card(models.Model):
     status = None
     cardState = None
     owner = None
+    owner_type = None
 
     # class Meta:
     #     abstract = True
@@ -32,6 +33,7 @@ class RepublicCard(Card):
         on_delete = models.CASCADE,
         verbose_name = 'republic'
     )
+    owner_type = "Republic"
 
     def __str__(self):
         return 'Republic Card ' + self.title
@@ -43,6 +45,7 @@ class PersonalCard(Card):
         on_delete = models.CASCADE,
         verbose_name = 'person'
     )
+    owner_type = "Person"
 
     def _str_(self):
         return 'Personal Card ' + self.title
