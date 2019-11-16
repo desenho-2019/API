@@ -7,6 +7,13 @@ class RepublicViewSet(viewsets.ModelViewSet):
     queryset = Republic.objects.all()
     serializer_class = RepublicSerializer
 
+
+
+
+
+
+
+
     # def list(self, request):
     #     return Response(serializer.data)
     #

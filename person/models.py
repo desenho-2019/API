@@ -33,7 +33,7 @@ class Person(models.Model):
         verbose_name="email"
     )
 
-    Republic = models.ForeignKey(
+    republic = models.ForeignKey(
         Republic,
         related_name = 'members',
         on_delete = models.CASCADE,
