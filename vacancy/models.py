@@ -4,7 +4,7 @@ from person.models import Person
 
 class Vacancy(models.Model):
     pictures = []
-    _state = None
+    state = models.BooleanField(default=True)
     card = models.ForeignKey(
         Card,
         related_name = 'vacancies',
@@ -27,6 +27,9 @@ class Vacancy(models.Model):
             return self.composite.get_area()
         if hasattr(self, 'leaf'):
             return self.leaf.get_area()
+
+    def updateState(self):
+        self.state = not self.state
 
 class Composite(Vacancy):
 
@@ -54,7 +57,6 @@ class Composite(Vacancy):
         return area
 
 class Leaf(Vacancy):
-    tenant = models.ForeignKey(Person, related_name = 'vacancies', on_delete = models.CASCADE, verbose_name = 'person', blank=True, null=True)
     price = models.FloatField()
     area = models.FloatField()
 
