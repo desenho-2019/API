@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Vacancy
+from .models import Composite, Leaf
 
-admin.site.register(Vacancy)
+admin.site.register(Composite)
+admin.site.register(Leaf)
