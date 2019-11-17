@@ -23,7 +23,10 @@ class Vacancy(models.Model):
             return self.leaf.get_price()
 
     def get_area(self):
-        pass
+        if hasattr(self, 'composite'):
+            return self.composite.get_area()
+        if hasattr(self, 'leaf'):
+            return self.leaf.get_area()
 
 class Composite(Vacancy):
 
@@ -39,13 +42,18 @@ class Composite(Vacancy):
         # leaf.save()
 
     def get_price(self):
+        # price = 0
+        # for vacancy in self.vacancies:
+        #     price+= vacancy.get_price()
+        # return price
         return 0
 
     def get_area(self):
-        area = 0
-        for vacancy in self.vacancies:
-            area+= vacancy.get_area()
-        return area
+        # area = 0
+        # for vacancy in self.vacancies:
+        #     area+= vacancy.get_area()
+        # return area
+        return 0
 
 class Leaf(Vacancy):
     tenant = models.ForeignKey(Person, related_name = 'vacancies', on_delete = models.CASCADE, verbose_name = 'person', blank=True, null=True)

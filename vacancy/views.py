@@ -95,3 +95,54 @@ class CreateListLeafView(APIView):
             card.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class CreateListLeafCompositeView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get_leaf(self, card_id):
+        leaves = Leaf.objects.filter(card__pk = card_id)
+        return leaves
+
+    def get_composite(self, card_id):
+        composite_id = self.kwargs.get("composite_id")
+        composite = Composite.objects.filter(pk=composite_id, card__pk = card_id).first()
+        return composite
+
+    def get_card_id(self, user_id, republic_id):
+        card_id = self.kwargs.get("card_id")
+        card = PersonalCard.objects.filter(pk=card_id, owner_id = user_id).first() or RepublicCard.objects.filter(pk=card_id, owner_id = republic_id).first()
+        if card:
+            return card.pk
+        return 0
+
+    def get_person_id(self, user):
+        person = user.person
+        return person.pk
+
+    def get_republic_id(self, person_id):
+        republic = Republic.objects.filter(members__pk = person_id)
+        if republic:
+            return republic.pk
+        return 0
+
+    def get(self, request, *args, **kwargs):
+        person_id = self.get_person_id(request.user)
+        republic_id = self.get_republic_id(person_id)
+        card_id = self.get_card_id(person_id, republic_id)
+        leaves = self.get_leaf(card.pk)
+        serializer = LeafSerializer(leaves, partial=True, many=True, read_only=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        person_id = self.get_person_id(request.user)
+        republic_id = self.get_republic_id(person_id)
+        card_id = self.get_card_id(person_id, republic_id)
+        composite = self.get_composite(card_id)
+        serializer = LeafSerializer(data=request.data, partial=True)
+        if serializer.is_valid():
+            leaf = serializer.save()
+            middleware = Middleware.objects.create(vacancy = leaf)
+            middleware.composite = composite
+            middleware.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
