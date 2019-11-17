@@ -28,7 +28,7 @@ router.register('cards/republic', RepublicCardViewSet)
 router.register('cards/personal', PersonalCardViewSet)
 router.register('republic/all', RepublicViewSet)
 router.register('person/all', PersonViewSet)
-router.register('vacancy', VacancyViewSet)
+router.register('vacancy/all', VacancyViewSet)
 
 
 
@@ -45,4 +45,5 @@ urlpatterns = [
     path('person/',include('person.urls')),
     path('republic/',include('republic.urls')),
     path('cards/',include('cards.urls')),
+    path('vacancy/',include('vacancy.urls')),
    ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

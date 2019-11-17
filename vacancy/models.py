@@ -2,23 +2,25 @@ from django.db import models
 from cards.models import Card
 from person.models import Person
 
-
 class Vacancy(models.Model):
     pictures = []
-    forniture = models.CharField(max_length=100)
     _state = None
     card = models.ForeignKey(
         Card,
         related_name = 'vacancies',
         on_delete = models.CASCADE,
-        verbose_name = 'card'
+        verbose_name = 'card',
+        blank=True, null=True
     )
 
     # class Meta:
     #     abstract = True
 
     def get_price(self):
-        pass
+        if hasattr(self, 'composite'):
+            return self.composite.get_price()
+        if hasattr(self, 'leaf'):
+            return self.leaf.get_price()
 
     def get_area(self):
         pass
@@ -26,7 +28,7 @@ class Vacancy(models.Model):
 class Composite(Vacancy):
 
     def add(self, vacancy):
-        self.vacancies_set.add(vacancy)
+        self.vacancies.add(vacancy)
         self.save()
 
     def remove(self, vacancy):
@@ -37,10 +39,7 @@ class Composite(Vacancy):
         # leaf.save()
 
     def get_price(self):
-        price = 0
-        for vacancy in self.vacancies:
-            price+= vacancy.get_price()
-        return price
+        return 0
 
     def get_area(self):
         area = 0
@@ -49,7 +48,7 @@ class Composite(Vacancy):
         return area
 
 class Leaf(Vacancy):
-    tenant = models.ForeignKey(Person, related_name = 'vacancies', on_delete = models.CASCADE, verbose_name = 'person')
+    tenant = models.ForeignKey(Person, related_name = 'vacancies', on_delete = models.CASCADE, verbose_name = 'person', blank=True, null=True)
     price = models.FloatField()
     area = models.FloatField()
 
@@ -71,7 +70,8 @@ class Middleware(models.Model):
         Composite,
         related_name = 'vacancies',
         on_delete = models.CASCADE,
-        verbose_name = 'composite'
+        verbose_name = 'composite',
+        blank=True, null=True
     )
 
     def get_area(self):

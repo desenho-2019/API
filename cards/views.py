@@ -83,25 +83,27 @@ class UpdateCard(APIView):
         card = PersonalCard.objects.filter(pk=card_id, owner_id = user_id).first() or RepublicCard.objects.filter(pk=card_id, owner_id = republic_id).first()
         return card
 
-    def get_person(self, user):
+    def get_person_id(self, user):
         person = user.person
-        return person
+        return person.pk
 
-    def get_republic(self, person):
-        republic = person.republic
-        return republic
+    def get_republic_id(self, person_id):
+        republic = Republic.objects.filter(members__pk=person_id)
+        if republic:
+            return republic.pk
+        return 0
 
     def get(self, request,*args, **kwargs):
-        person = self.get_person(request.user)
-        republic = self.get_republic(person)
-        card = self.get_card(person.pk, republic.pk)
+        person_id = self.get_person_id(request.user)
+        republic_id = self.get_republic_id(person)
+        card = self.get_card(person_id, republic_id)
         serializer = UpdateCardSerializer(card)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def put(self, request, *args, **kwargs):
-        person = self.get_person(request.user)
-        republic = self.get_republic(person)
-        card = self.get_card(person.pk, republic.pk)
+        person_id = self.get_person_id(request.user)
+        republic_id = self.get_republic_id(person_id)
+        card = self.get_card(person_id, republic_id)
         if card:
             serializer = eval(card.update_serializer)(card, data=request.data, partial=True)
             if serializer.is_valid():

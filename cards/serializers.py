@@ -1,11 +1,12 @@
 from rest_framework import serializers, routers, viewsets
 from .models import RepublicCard, PersonalCard, Card
+from vacancy.serializers import VacancySerializer
 
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         abstract = True
-        fields = ('pk', 'title', 'description', 'price', 'location', 'items',
-        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'status', 'owner', 'owner_type')
+        fields = ['pk', 'title', 'description', 'location', 'items',
+        'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'owner', 'owner_type']
 
 class RepublicCardSerializer(CardSerializer):
     class Meta:
@@ -13,9 +14,10 @@ class RepublicCardSerializer(CardSerializer):
         fields = CardSerializer.Meta.fields
 
 class PersonalCardSerializer(CardSerializer):
+    vacancies = VacancySerializer(many=True, read_only=True)
     class Meta:
         model = PersonalCard
-        fields = CardSerializer.Meta.fields
+        fields = CardSerializer.Meta.fields + ['vacancies']
 
 # class UpdateCardSerializer(serializers.ModelSerializer):
 #     title = serializers.CharField()
