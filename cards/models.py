@@ -10,6 +10,7 @@ class Card(models.Model):
     location = models.CharField(max_length=200)
     items = []
     expenses = models.CharField(max_length=200)
+    image = models.ImageField(blank=True)
     comodities = []
     contact = models.IntegerField()
     terms = []
