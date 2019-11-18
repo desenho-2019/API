@@ -5,7 +5,7 @@ from vacancy.serializers import VacancySerializer
 class CardSerializer(serializers.ModelSerializer):
     class Meta:
         abstract = True
-        fields = ['pk', 'title', 'description', 'location', 'items',
+        fields = ['pk', 'title', 'description', 'location', 'items','image',
         'expenses', 'comodities', 'contact', 'terms', 'target_gender', 'owner', 'owner_type']
 
 class RepublicCardSerializer(CardSerializer):
