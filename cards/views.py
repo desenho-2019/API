@@ -3,10 +3,12 @@ from rest_framework import routers, serializers, viewsets, status
 from .models import RepublicCard, PersonalCard, Card
 from .serializers import RepublicCardSerializer, PersonalCardSerializer
 from rest_framework.views import APIView
+from rest_framework.filters import SearchFilter
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from users.models import CustomUser
 from republic.models import Republic
+
 
 class RepublicCardViewSet(viewsets.ModelViewSet):
     queryset = RepublicCard.objects.all()
@@ -15,6 +17,8 @@ class RepublicCardViewSet(viewsets.ModelViewSet):
 class PersonalCardViewSet(viewsets.ModelViewSet):
     queryset = PersonalCard.objects.all()
     serializer_class = PersonalCardSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['location','title','expenses']
 
 class MyPersonalCards(APIView):
     permission_classes = (IsAuthenticated,)
