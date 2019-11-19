@@ -6,7 +6,7 @@ services:
   web:
     container_name: cafofo_api
     build: .
-    command: /bin/bash -l -c 'python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8990'
+    command: /bin/bash -l -c 'python3 manage.py makemigrations && python3 manage.py migrate auth && python3 manage.py migrate --run-syncdb && python3 manage.py runserver 0.0.0.0:8990'
     volumes:
       - .:/API/
     ports:
