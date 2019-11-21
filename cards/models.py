@@ -12,7 +12,7 @@ class Card(models.Model):
     expenses = models.CharField(max_length=200)
     image = models.ImageField(blank=True)
     comodities = []
-    contact = models.IntegerField()
+    contact = models.CharField(max_length=20)
     terms = []
     target_gender = ''
     owner = None
